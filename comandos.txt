@@ -1,1 +1,3 @@
-hola
+comandos-git.txt
+git add comandos-git.txt
+git commit -m
