@@ -1,0 +1,80 @@
+body {
+    background: #1e3c6a;
+    font-family: 'Georgia', serif;
+    margin: 0;
+    padding: 0;
+}
+
+.biografia-container {
+    max-width: 650px;
+    margin: 45px auto;
+    background: #ffffffbd;
+    border: 2px solid #d2b48c;
+    border-radius: 100px;
+    padding: 32px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.titulo {
+    text-align: center;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    font-family: 'Georgia', serif;
+}
+
+.info-principal {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.datos {
+    background: #f3e9d2;
+    padding: 18px 28px;
+    border-radius: 8px;
+    min-width: 220px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.datos h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.datos ul {
+    list-style: disc inside;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+}
+
+.secciones {
+    display: flex;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.seccion {
+    flex: 1;
+    background: #f3e9d2;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.seccion h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 700px) {
+    .biografia-container {
+        padding: 16px 6px;
+    }
+    .secciones {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
