@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>matrices calculator</title>
+    <link rel="stylesheet" href="matrices.css">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>calculadora de matrices de manera interactiva</h1>
+            <p>realiza operaciones con matrices</p>
+        </header>
+     <div class="controls">
+        <div class="selector_de_matrices">
+            <label for="tipo_de_matriz"> matriz tamano: </label>
+            <select id="tipo_de_matriz">
+                <option value="2x2">2x2</option>
+                <option value="3x3">3x3</option>
+                <option value="4x4">4x4</option>
+                <option value="5x5">5x5</option>
+                <option value="6x6">6x6</option>
+                <option value="7x7">7x7</option>
+                <option value="8x8">8x8</option>
+                <option value="9x9">9x9</option>
+                <option value="10x10">10x10</option>
+            </select>
+
+     </div>   
+      <div class="controles_matrices">
+        <button id="matriz_aleatoria"> generar aleatoria</button>
+        <button id="clean_matriz"> Limpiar matriz</button>
+        <button id="ejemplo_de_matriz">ejemplo</button>
+      </div>
+   </div>
+
+   <div class="matrices_container">
+        <div class="matriz_input_container">
+            <h2>Matriz A</h2>
+            <div id="matriz_a" class="matriz_input"></div>
+        </div>
+        <div class="matriz_input_container">
+            <h2>Matriz B</h2>
+            <div id="matriz_b" class="matriz_input"></div>
+   </div>
+</div>
+    <div class="operations">
+            <h2>Operaciones</h2>
+            <div class="boton_de_operaciones">
+                <button id="agg-matrices">A + B</button>
+                <button id="sustraer-matrices">A - B</button>
+                <button id="multiplicar-matrices">A × B</button>
+                <button id="multiplicacion-escalar">Escalar × A</button>
+                <button id="transponer-a">Transpuesta A</button>
+                <button id="determinante-a">Determinante A</button>
+                <button id="inversa-a">Inversa A</button>
+                <button id="matriz-identidad">Matriz Identidad</button>
+            </div>
+            
+            <div class="scalar-input" id="scalar-input-container" style="display: none;">
+                <label for="scalar-value">Valor escalar:</label>
+                <input type="number" id="scalar-value" step="any" value="1">
+                <button id="apply-scalar">Aplicar</button>
+            </div>
+        </div>
+
+        <div class="result-container">
+            <h2>Resultado</h2>
+            <div id="result-matrix" class="result-matrix"></div>
+            <div id="result-text" class="result-text"></div>
+            <div id="error-message" class="error-message"></div>
+        </div>
+    </div>
+
+    <script src="matrices.js"></script>
+
+    
+</body>
+</html>
