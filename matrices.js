@@ -124,3 +124,65 @@ function updateMatricesFromInputs() {
         matrizB[row][col] = parseFloat(input.value) || 0;
     });
 }
+
+function showScalarInput() {
+    document.getElementById('scalar-input-container').style.display = 'flex';
+}
+
+// Realiza la operación seleccionada
+function performOperation(operation) {
+    updateMatricesFromInputs();
+    clearResult();
+    
+    try {
+        let result;
+        
+        switch(operation) {
+            case 'add':
+                result = addMatrices(matrixA, matrixB);
+                displayMatrixResult(result, 'A + B');
+                break;
+                
+            case 'subtract':
+                result = subtractMatrices(matrixA, matrixB);
+                displayMatrixResult(result, 'A - B');
+                break;
+            case 'multiply':
+                result = multiplyMatrices(matrixA, matrixB);
+                displayMatrixResult(result, 'A × B');
+                break;
+                
+            case 'scalar':
+                const scalar = parseFloat(document.getElementById('scalar-value').value);
+                if (isNaN(scalar)) {
+                    throw new Error('El valor escalar debe ser un número');
+                }
+                result = scalarMultiply(matrixA, scalar);
+                displayMatrixResult(result, `${scalar} × A`);
+                document.getElementById('scalar-input-container').style.display = 'none';
+                break;
+                
+            case 'transpose':
+                result = transposeMatrix(matrixA);
+                displayMatrixResult(result, 'Transpuesta de A');
+                break;
+            case 'determinant':
+                const det = calculateDeterminant(matrixA);
+                displayTextResult(`det(A) = ${formatNumber(det)}`);
+                break;
+                
+            case 'inverse':
+                result = inverseMatrix(matrixA);
+                displayMatrixResult(result, 'Inversa de A');
+                break;
+                
+            case 'identity':
+                result = createIdentityMatrix(matrixSize);
+                displayMatrixResult(result, `Matriz Identidad ${matrixSize}×${matrixSize}`);
+                break;
+        }
+    } catch (error) {
+        displayError(error.message);
+    }
+}
+    
