@@ -112,3 +112,40 @@ select, input {
     border-radius: 4px;
     font-size: 16px;
 }
+
+.operations{
+    margin-bottom: 25px;
+    padding:10px;
+    border: 0.5px solid white;
+    border-radius:4px;
+}
+.operations h2 {
+    margin-bottom: 15px;
+    color: gray;
+}
+
+.operation-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.scalar-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.result-container {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.result-container h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
