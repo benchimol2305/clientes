@@ -16,7 +16,6 @@ function initializeMatrices() {
     matrizB = createEmptyMatriz(tipo_de_matriz);
 }
 
-// ...existing code...
 function createMatrixInputs(containerId, size) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
