@@ -61,9 +61,9 @@ header p{
 }
 
 button {
-    background-color: gray;
+    background-color: white;
     color: black;
-    border: none;
+    border: 1px solid black;
     padding: 8px 15px;
     border-radius: 40px;
     cursor: pointer;
@@ -121,7 +121,7 @@ select, input {
 }
 .operations h2 {
     margin-bottom: 15px;
-    color: gray;
+    color: black;
 }
 
 .operation-buttons {
@@ -146,6 +146,63 @@ select, input {
 
 .result-container h2 {
     margin-bottom: 15px;
+    color: black;
+}
+
+.result-matrix{
+    display: grid;
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: whitesmoke;
+    justify-content: center;
+
+}
+
+.result-cell{
+    width: 60px;
+    height: 40px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(242, 225, 225);
+
+}
+
+.result-text {
+    font-size: 18px;
+    font-weight: bold;
     color: #2c3e50;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #e74c3c;
+    border-radius: 4px;
+    background-color: #fadbd8;
+}
+@media (max-width: 768px) {
+    .matrices-container {
+        flex-direction: column;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .operation-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
