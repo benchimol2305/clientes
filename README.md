@@ -18,9 +18,6 @@ Archivos principales:
 1. Abrir `matrices.html` directamente en el navegador (doble clic)  
    o, clonar el proyecto localmente para evitar restricciones:
    - Con Python (Windows):
-     - Abrir terminal en la carpeta del proyecto:
-       py -m http.server 8000
-     - Abrir: http://localhost:8000/matrices.html
 
 2. Usar los controles:
    - Seleccionar tamaño
