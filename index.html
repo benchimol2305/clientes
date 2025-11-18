@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Trivia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- configuracion inicial -->
+        <div id="setup-screen" class="screen active">
+            <h1>Juego de Trivia</h1>
+            <form id="game-setup">
+                <div class="form-group">
+                    <label for="player-name">Nombre del jugador:</label>
+                    <input type="text" id="player-name" required minlength="2" maxlength="20">
+                    <span class="error-message" id="name-error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="question-count">Cantidad de preguntas:</label>
+                    <input type="number" id="question-count" min="5" max="20" value="10">
+                </div>
+                
+                <div class="form-group">
+                    <label for="difficulty">Nivel de dificultad:</label>
+                    <select id="difficulty">
+                        <option value="easy">Facil</option>
+                        <option value="medium">Medio</option>
+                        <option value="hard">Dificil</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Categoria:</label>
+                    <select id="category">
+                        <option value="">Mixto</option>
+                    </select>
+                </div>
+                
+                <button type="submit" id="start-game">Comenzar Juego</button>
+            </form>
+        </div>
+        
+        <!-- Pantalla de carga -->
+        <div id="loading-screen" class="screen">
+            <h2>Cargando preguntas...</h2>
+            <div class="spinner"></div>
+        </div>
+        
+        <!-- Pantalla de juego -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="player-info">Jugador: <span id="current-player"></span></div>
+                <div class="score">Puntuacion: <span id="current-score">0</span></div>
+            </div>
+            
+            <div class="progress">Pregunta <span id="current-question">1</span> de <span id="total-questions">10</span></div>
+            
+            <div class="timer-container">
+                <div class="timer-bar">
+                    <div class="timer-fill" id="timer-fill"></div>
+                </div>
+                <div class="timer-text" id="timer-text">20</div>
+            </div>
+            
+            <div class="question-container">
+                <h2 id="question-text"></h2>
+                <div id="answers-container" class="answers"></div>
+            </div>
+        </div>
+        
+        <!-- Pantalla de resultados -->
+        <div id="results-screen" class="screen">
+            <h2>Resultados Finales</h2>
+            
+            <div class="results-info">
+                <p><strong>Jugador:</strong> <span id="result-player"></span></p>
+                <p><strong>Puntos totales:</strong> <span id="result-score">0</span> puntos</p>
+                <p><strong>Respuestas correctas:</strong> <span id="result-correct">0</span> de <span id="result-total">0</span></p>
+                <p><strong>Porcentaje de aciertos:</strong> <span id="result-percentage">0</span>%</p>
+                <p><strong>Tiempo promedio por pregunta:</strong> <span id="result-average-time">0</span> segundos</p>
+            </div>
+            
+            <div class="results-actions">
+                <button id="play-again">Juega otra vez</button>
+                <button id="change-settings">cambiar configuracion</button>
+                <button id="end-game">terminar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
