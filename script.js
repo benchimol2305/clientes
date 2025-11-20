@@ -106,3 +106,12 @@ function validatePlayerName() {
         return true;
     }
 }
+
+// Iniciar el juego
+function startGame(event) {
+    event.preventDefault();
+    
+    // Validar el nombre del jugador
+    if (!validatePlayerName()) {
+        return;
+    }
