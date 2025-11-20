@@ -312,6 +312,78 @@ function selectAnswer(button, isCorrect) {
             btn.classList.add('correct');
         }
     });
+
+    // Resaltar la respuesta seleccionada
+    if (isCorrect) {
+        // Respuesta correcta
+        button.classList.add('correct');
+        score += 10;
+        correctAnswers++;
+        currentScoreSpan.textContent = score;
+    } else {
+        // Respuesta incorrecta
+        button.classList.add('incorrect');
+    }
+    
+    // Esperar un momento y pasar a la siguiente pregunta
+    setTimeout(nextQuestion, 2000);
+}
+
+// Pasar a la siguiente pregunta
+function nextQuestion() {
+    currentQuestionIndex++;
+    
+    // Verificar si es la ultima pregunta
+    if (currentQuestionIndex >= questions.length) {
+        showResults();
+    } else {
+        showQuestion();
+    }
+}
+
+// Mostrar resultados finales
+function showResults() {
+    // Ocultar pantalla de juego y mostrar pantalla de resultados
+    gameScreen.classList.remove('active');
+    resultsScreen.classList.add('active');
+    
+    // Calcular estadisticas
+    const percentage = Math.round((correctAnswers / questions.length) * 100);
+    const averageTime = Math.round(totalTimeSpent / questions.length);
+    
+    // Mostrar resultados
+    resultPlayerSpan.textContent = playerName;
+    resultScoreSpan.textContent = score;
+    resultCorrectSpan.textContent = correctAnswers;
+    resultTotalSpan.textContent = questions.length;
+    resultPercentageSpan.textContent = percentage;
+    resultAverageTimeSpan.textContent = averageTime;
+}
+
+// Jugar otra vez 
+function playAgain() {
+    // Ocultar pantalla de resultados y mostrar pantalla de carga
+    resultsScreen.classList.remove('active');
+    loadingScreen.classList.add('active');
+    
+    // Cargar nuevas preguntas con la misma configuracion
+    loadQuestions();
+}
+
+//comenzar nuevo juego
+function changeSettings() {
+    // Ocultar pantalla de resultados y mostrar pantalla de configuración
+    resultsScreen.classList.remove('active');
+    setupScreen.classList.add('active');
+}
+
+// Finalizar la aplicación
+function endGame() {
+    // Limpiar todo y recargar la pagina
+    if (confirm('¿quieres terminar el juego?')) {
+        location.reload();
+    }
+}
     
 
     
