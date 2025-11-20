@@ -280,7 +280,38 @@ function startTimer() {
         }
     }, 1000);
 }
+// Manejar cuando se agota el tiempo
+function handleTimeUp() {
+    // Deshabilitar todos los botones de respuesta
+    const answerButtons = document.querySelectorAll('.answer-btn');
+    answerButtons.forEach(button => {
+        button.disabled = true;
+        
+        // Resaltar la respuesta correcta
+        if (button.textContent === decodeURIComponent(questions[currentQuestionIndex].correct_answer)) {
+            button.classList.add('correct');
+        }
+    });
+    
+    // Esperar un momento y pasar a la siguiente pregunta
+    setTimeout(nextQuestion, 2000);
+}
 
+// Seleccionar una respuesta
+function selectAnswer(button, isCorrect) {
+    // Pausar el temporizador
+    clearInterval(timer);
+    
+    // Deshabilitar todos los botones de respuesta
+    const answerButtons = document.querySelectorAll('.answer-btn');
+    answerButtons.forEach(btn => {
+        btn.disabled = true;
+        
+        // Resaltar la respuesta correcta
+        if (btn.textContent === decodeURIComponent(questions[currentQuestionIndex].correct_answer)) {
+            btn.classList.add('correct');
+        }
+    });
     
 
     
