@@ -129,3 +129,47 @@ function startGame(event) {
     // se cargan las preguntas de la API
     loadQuestions();
 }
+
+// Cargar preguntas desde la API
+async function loadQuestions() {
+    try {
+        // url de la api
+        let apiUrl = `https://opentdb.com/api.php?amount=${questionCount}`;
+        
+        if (category) {
+            apiUrl += `&category=${category}`;
+        }
+        
+        if (difficulty) {
+            apiUrl += `&difficulty=${difficulty}`;
+        }
+        
+        //para evitar problemas con los caracteres especiales
+        apiUrl += '&encode=url3986';
+        
+        // peticion a la API
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            throw new Error('Error al cargar las preguntas');
+        }
+        
+        const data = await response.json();
+        
+        if (data.response_code !== 0) {
+            throw new Error('No se pudieron obtener las preguntas');
+        }
+        
+        questions = data.results;
+        
+        // Iniciar el juego
+        startGameplay();
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error al cargar las preguntas. Intentalo de nuevo.');
+        // Volver a la pantalla de configuración
+        loadingScreen.classList.remove('active');
+        setupScreen.classList.add('active');
+    }
+}
