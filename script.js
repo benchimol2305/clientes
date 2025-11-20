@@ -173,3 +173,33 @@ async function loadQuestions() {
         setupScreen.classList.add('active');
     }
 }
+
+// Iniciar el juego
+function startGameplay() {
+    // Ocultar pantalla de carga y mostrar pantalla de juego
+    loadingScreen.classList.remove('active');
+    gameScreen.classList.add('active');
+    
+    // Actualizar informacion del jugador
+    currentPlayerSpan.textContent = playerName;
+    totalQuestionsSpan.textContent = questions.length;
+    
+    // Reiniciar variables del juego
+    currentQuestionIndex = 0;
+    score = 0;
+    correctAnswers = 0;
+    totalTimeSpent = 0;
+    
+    // Mostrar la primera pregunta
+    showQuestion();
+}
+
+// Mostrar la pregunta actual
+function showQuestion() {
+    // Reiniciar temporizador
+    timeLeft = 20;
+    timerFill.style.width = '100%';
+    timerFill.className = 'timer-fill';
+    timerText.textContent = timeLeft;
+    
+    
