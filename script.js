@@ -71,13 +71,13 @@ async function loadCategories() {
             categorySelect.appendChild(option);
         });
     } catch (error) {
-        console.error('Error al cargar categorías:', error);
+        console.error('Error al cargar categorias:', error);
         // si hay error, mostrar las que hay por defecto
         const defaultCategories = [
             { id: 9, name: 'Conocimientos generales' },
             { id: 10, name: 'Entretenimiento: Libros' },
             { id: 11, name: 'Entretenimiento: Cine' },
-            { id: 12, name: 'Entretenimiento: Música' },
+            { id: 12, name: 'Entretenimiento: Musica' },
             { id: 17, name: 'Ciencia y Naturaleza' }
         ];
         
@@ -87,5 +87,22 @@ async function loadCategories() {
             option.textContent = cat.name;
             categorySelect.appendChild(option);
         });
+    }
+}
+
+// Validar el nombre del jugador
+function validatePlayerName() {
+    const name = playerNameInput.value.trim();
+    const nameError = document.getElementById('name-error');
+    
+    if (name.length < 2) {
+        nameError.textContent = 'El nombre debe tener al menos 2 caracteres';
+        return false;
+    } else if (name.length > 20) {
+        nameError.textContent = 'El nombre no puede tener mas de 20 caracteres';
+        return false;
+    } else {
+        nameError.textContent = '';
+        return true;
     }
 }
