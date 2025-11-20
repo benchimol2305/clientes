@@ -168,7 +168,7 @@ async function loadQuestions() {
     } catch (error) {
         console.error('Error:', error);
         alert('Error al cargar las preguntas. Intentalo de nuevo.');
-        // Volver a la pantalla de configuración
+        // Volver a la pantalla de configuracion
         loadingScreen.classList.remove('active');
         setupScreen.classList.add('active');
     }
@@ -201,5 +201,86 @@ function showQuestion() {
     timerFill.style.width = '100%';
     timerFill.className = 'timer-fill';
     timerText.textContent = timeLeft;
+    // Actualizar progreso
+    currentQuestionSpan.textContent = currentQuestionIndex + 1;
+    currentScoreSpan.textContent = score;
     
+    // Obtener pregunta actual
+    const currentQuestion = questions[currentQuestionIndex];
+    
+    // Decodificar texto de la pregunta
+    questionText.textContent = decodeURIComponent(currentQuestion.question);
+    
+    // Mezclar y mostrar respuestas
+    const allAnswers = [
+        ...currentQuestion.incorrect_answers.map(answer => ({
+            text: decodeURIComponent(answer),
+            correct: false
+        })),
+        {
+            text: decodeURIComponent(currentQuestion.correct_answer),
+            correct: true
+        }
+    ];
+    
+    // Mezclar respuestas
+    shuffleArray(allAnswers);
+    
+    // Limpiar contenedor de respuestas
+    answersContainer.innerHTML = '';
+    
+    // Crear botones de respuestas
+    allAnswers.forEach(answer => {
+        const button = document.createElement('button');
+        button.className = 'answer-btn';
+        button.textContent = answer.text;
+        button.addEventListener('click', () => selectAnswer(button, answer.correct));
+        answersContainer.appendChild(button);
+    });
+    
+    // Iniciar temporizador
+    startTimer();
+}
+
+// Mezclar array (algoritmo Fisher-Yates)
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Iniciar temporizador
+function startTimer() {
+    // Limpiar temporizador anterior si existe
+    if (timer) {
+        clearInterval(timer);
+    }
+     // Actualizar temporizador cada segundo
+    timer = setInterval(() => {
+        timeLeft--;
+        totalTimeSpent++;
+        
+        // Actualizar visualización del temporizador
+        timerText.textContent = timeLeft;
+        timerFill.style.width = `${(timeLeft / 20) * 100}%`;
+        
+        // Cambiar color cuando queden menos de 5 segundos
+        if (timeLeft <= 5) {
+            timerFill.classList.add('timer-danger');
+        } else if (timeLeft <= 10) {
+            timerFill.classList.add('timer-warning');
+        }
+        
+        // Si se agota el tiempo
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            handleTimeUp();
+        }
+    }, 1000);
+}
+
+    
+
     
