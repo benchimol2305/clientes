@@ -115,3 +115,17 @@ function startGame(event) {
     if (!validatePlayerName()) {
         return;
     }
+
+     // se obtienen los valores del formulario
+    playerName = playerNameInput.value.trim();
+    questionCount = parseInt(questionCountInput.value);
+    difficulty = difficultySelect.value;
+    category = categorySelect.value;
+    
+    // muestrar pantalla de carga
+    setupScreen.classList.remove('active');
+    loadingScreen.classList.add('active');
+    
+    // se cargan las preguntas de la API
+    loadQuestions();
+}
