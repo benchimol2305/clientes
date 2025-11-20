@@ -54,3 +54,38 @@ document.addEventListener('DOMContentLoaded', function() {
     
     playerNameInput.addEventListener('input', validatePlayerName);
 }); 
+
+
+// Cargar categorias desde la API
+async function loadCategories() {
+    try {
+        const response = await fetch('https://opentdb.com/api_category.php');
+        const data = await response.json();
+        categories = data.trivia_categories;
+        
+        // Llenar el selector de categorias con al menos 5 opciones
+        categories.slice(0, 10).forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat.id;
+            option.textContent = cat.name;
+            categorySelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error al cargar categorías:', error);
+        // si hay error, mostrar las que hay por defecto
+        const defaultCategories = [
+            { id: 9, name: 'Conocimientos generales' },
+            { id: 10, name: 'Entretenimiento: Libros' },
+            { id: 11, name: 'Entretenimiento: Cine' },
+            { id: 12, name: 'Entretenimiento: Música' },
+            { id: 17, name: 'Ciencia y Naturaleza' }
+        ];
+        
+        defaultCategories.forEach(cat => {
+            const option = document.createElement('option');
+            option.value = cat.id;
+            option.textContent = cat.name;
+            categorySelect.appendChild(option);
+        });
+    }
+}
