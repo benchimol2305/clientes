@@ -40,3 +40,17 @@ const resultAverageTimeSpan = document.getElementById('result-average-time');
 const playAgainButton = document.getElementById('play-again');
 const changeSettingsButton = document.getElementById('change-settings');
 const endGameButton = document.getElementById('end-game');
+
+// inicializar el juego cuando de cargue la pagiina
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Cargar categorías de la API
+    loadCategories();
+
+    gameSetupForm.addEventListener('submit', startGame);
+    playAgainButton.addEventListener('click', playAgain);
+    changeSettingsButton.addEventListener('click', changeSettings);
+    endGameButton.addEventListener('click', endGame);
+    
+    playerNameInput.addEventListener('input', validatePlayerName);
+}); 
